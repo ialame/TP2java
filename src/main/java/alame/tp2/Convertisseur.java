@@ -8,8 +8,8 @@ public class Convertisseur extends JFrame implements ActionListener {
     // le taux de conversion.
     protected double taux = 1.3563;
     protected JLabel lblTaux;//permet l'affichage du taux de conversion
-    protected JTextField euro;//contient la valeur � convertir
-    protected JTextField dollar;//contient la valeur convertie
+    protected JTextField tfEuro;//contient la valeur � convertir
+    protected JTextField tfDollar;//contient la valeur convertie
 
     protected JComboBox liste = new JComboBox();
     protected JButton bt;
@@ -26,14 +26,14 @@ public class Convertisseur extends JFrame implements ActionListener {
         //  JLabel et  JTextField pour la valeur en euros
         JPanel pEuro =new JPanel(new BorderLayout());
         pEuro.add(new JLabel("Euro"),BorderLayout.NORTH);
-        pEuro.add(euro = new JTextField(10),BorderLayout.SOUTH);
+        pEuro.add(tfEuro = new JTextField(10),BorderLayout.SOUTH);
         pNord.add(pEuro);
 
         //  JLabel et  JTextField pour la valeur en euros
         JPanel pDollar =new JPanel(new BorderLayout());
         pDollar.add(new JLabel("Dollar"),BorderLayout.NORTH);
-        pDollar.add(dollar = new JTextField(10),BorderLayout.SOUTH);
-        dollar.setEditable(false);
+        pDollar.add(tfDollar = new JTextField(10),BorderLayout.SOUTH);
+        tfDollar.setEditable(false);
         pNord.add(pDollar);
         contentPane.add(pNord,BorderLayout.NORTH);
         //       C E N T R E
@@ -66,9 +66,9 @@ public class Convertisseur extends JFrame implements ActionListener {
      */
     public void actionPerformed(ActionEvent e) {
         try {
-            String strEuros = euro.getText().replace(',','.');
+            String strEuros = tfEuro.getText().replace(',','.');
             double val = Double.parseDouble(strEuros);
-            dollar.setText(""+ Currency.formatte(val*taux,2, Currency.USD));
+            tfDollar.setText(""+ Currency.formatte(val*taux,2, Currency.USD));
         }
         catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(null,"Entrez un nombre !!!",
